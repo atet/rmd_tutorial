@@ -27,7 +27,7 @@ If you open the `README.Rmd` document for editing in RStudio and click the **Kni
 
 You can embed an R code chunk like this:
 
-```{r}
+```{r chunk_id_cars}
 summary(cars)
 ```
 
@@ -37,7 +37,7 @@ summary(cars)
 
 You can also embed plots, for example:
 
-```{r}
+```{r chunk_id_pressure}
 plot(pressure)
 ```
 

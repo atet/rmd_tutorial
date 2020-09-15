@@ -48,7 +48,7 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-![](.img/README_unnamed-chunk-2-1.png)<!-- -->
+![](.img/README_chunk_id_pressure-1.png)<!-- -->
 
 > The output image from this code execution will be automatically saved
 > in the `.img` subdirectory.
