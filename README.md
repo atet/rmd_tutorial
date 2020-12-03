@@ -71,12 +71,12 @@ R)](https://github.com/atet/learn/blob/master/programming/README.md#atet--learn-
   - R language and RStudio installed locally in your development
     environment:
     [Instructions](https://rstudio.com/products/rstudio/download/#download)
-  - Clone this `tutorial` branch, e.g. in CLI:
+  - Clone this repository, e.g. in CLI:
 
 <!-- end list -->
 
 ``` console
-$ git clone --branch tutorial git@github.com:atet/rmd.git
+$ git clone git@github.com:atet/rmd_tutorial.git
 ```
 
   - Install required R packages for R Markdown support (only needs to be
@@ -497,7 +497,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.74
+    ##    3.78
 
 ``` r
 system.time({
