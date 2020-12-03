@@ -57,10 +57,12 @@ plot(pressure)
 
   - <https://stackoverflow.com/a/39816334>
 
-## Branch: `tutorial`
+-----
+
+## Intermediate Tutorial
 
 The following is an intermediate tutorial on data handling,
-manipulation, processing, and reporting.
+manipulation, processing, and reporting in the R language.
 
 An introduction to the R language can be found here: [Introduction to
 Programming (in
@@ -292,6 +294,83 @@ str(iris1234)
     ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
     ##  $ Species     : chr  "setosa" "setosa" "setosa" "setosa" ...
 
+New columns can be added by specifying a column name that is not
+currently used and populating it:
+
+``` r
+iris1234$test = paste("test", nrow(iris1234):1)
+head(iris1234, n = 2)
+```
+
+    ##   id Sepal.Length Sepal.Width Petal.Length Petal.Width Species     test
+    ## 1  1          5.1         3.5          1.4         0.2  setosa test 150
+    ## 2  2          4.9         3.0          1.4         0.2  setosa test 149
+
+Existing columns can be removed:
+
+``` r
+iris1234$test = NULL
+head(iris1234, n = 2)
+```
+
+    ##   id Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+    ## 1  1          5.1         3.5          1.4         0.2  setosa
+    ## 2  2          4.9         3.0          1.4         0.2  setosa
+
+New rows can be added with the concatenating `rbind` function above
+(must have the same columns):
+
+``` r
+new_row = data.frame(id = 151, Sepal.Length = NA, Sepal.Width = NA, Petal.Length = NA, Petal.Width = NA, Species = "test")
+iris1234 = rbind(iris1234, new_row)
+tail(iris1234, n = 2)
+```
+
+    ##      id Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+    ## 150 150          5.9           3          5.1         1.8 virginica
+    ## 151 151           NA          NA           NA          NA      test
+
+Existing rows can be removed:
+
+``` r
+iris1234 = iris1234[iris1234$id != 151,]
+tail(iris1234, n = 2)
+```
+
+    ##      id Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+    ## 149 149          6.2         3.4          5.4         2.3 virginica
+    ## 150 150          5.9         3.0          5.1         1.8 virginica
+
+By combining subsetting and manipulation, very specific data can be
+identified:
+
+``` r
+iris_filtered = iris1234[iris1234$Sepal.Length > 5 & iris1234$Species == "setosa", "id"]
+```
+
+..or removed:
+
+``` r
+iris_filtered = iris1234[iris1234$Sepal.Length <= 5 & iris1234$Species != "setosa", "id"]
+```
+
+..or replaced:
+
+``` r
+head(iris1234, n = 1)
+```
+
+    ##   id Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+    ## 1  1          5.1         3.5          1.4         0.2  setosa
+
+``` r
+iris1234[iris1234$id == "1", ]$Species = "SETOSA"
+head(iris1234, n = 1)
+```
+
+    ##   id Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+    ## 1  1          5.1         3.5          1.4         0.2  SETOSA
+
 ### Summarization
 
 Earlier we used the `summary()` function to quickly get information on
@@ -371,21 +450,25 @@ sd(iris1234$Sepal.Length)
 
     ## [1] 0.8280661
 
-..or all percentile bins (e.g. 25% increments):
+..or all percentile bins (e.g. 5% increments):
 
 ``` r
-quantile(iris1234$Sepal.Length, probs = c(0, 0.25, 0.5, 0.75, 1))
+quantile(iris1234$Sepal.Length, probs = c(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1))
 ```
 
-    ##   0%  25%  50%  75% 100% 
-    ##  4.3  5.1  5.8  6.4  7.9
+    ##    0%    5%   10%   15%   20%   25%   30%   35%   40%   45%   50%   55%   60% 
+    ## 4.300 4.600 4.800 5.000 5.000 5.100 5.270 5.500 5.600 5.700 5.800 5.900 6.100 
+    ##   65%   70%   75%   80%   85%   90%   95%  100% 
+    ## 6.200 6.300 6.400 6.520 6.700 6.900 7.255 7.900
 
 ``` r
-quantile(iris1234$Sepal.Length, probs = seq(0, 1, 0.25))
+quantile(iris1234$Sepal.Length, probs = seq(0, 1, 0.05))
 ```
 
-    ##   0%  25%  50%  75% 100% 
-    ##  4.3  5.1  5.8  6.4  7.9
+    ##    0%    5%   10%   15%   20%   25%   30%   35%   40%   45%   50%   55%   60% 
+    ## 4.300 4.600 4.800 5.000 5.000 5.100 5.270 5.500 5.600 5.700 5.800 5.900 6.100 
+    ##   65%   70%   75%   80%   85%   90%   95%  100% 
+    ## 6.200 6.300 6.400 6.520 6.700 6.900 7.255 7.900
 
 ..or tabulating counts of unique values:
 
@@ -394,8 +477,8 @@ table(iris1234$Species)
 ```
 
     ## 
-    ##     setosa versicolor  virginica 
-    ##         50         50         50
+    ##     setosa     SETOSA versicolor  virginica 
+    ##         49          1         50         50
 
 ..or binning values then tabulating the bins:
 
@@ -497,7 +580,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.78
+    ##    3.73
 
 ``` r
 system.time({
@@ -506,7 +589,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    0.12
+    ##    0.13
 
 ``` r
 all.equal(result1, result2)
@@ -516,11 +599,9 @@ all.equal(result1, result2)
 
 TODO: Multi-threading
 
-<center>
+-----
 
-Copyright © 2020-∞
-<a href="http://www.athitkao.com" target="_blank">Athit Kao,
-<a href="http://www.athitkao.com/tos.html" target="_blank">Terms and
-Conditions</a>
+Copyright © 2020-∞ [Athit Kao](http://www.athitkao.com), [Terms and
+Conditions](http://www.athitkao.com/tos.html)
 
-</center>
+-----

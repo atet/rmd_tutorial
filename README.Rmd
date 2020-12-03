@@ -47,9 +47,11 @@ plot(pressure)
 
 * https://stackoverflow.com/a/39816334
 
-## Branch: `tutorial`
+---
 
-The following is an intermediate tutorial on data handling, manipulation, processing, and reporting.
+## Intermediate Tutorial
+
+The following is an intermediate tutorial on data handling, manipulation, processing, and reporting in the R language.
 
 An introduction to the R language can be found here: [Introduction to Programming (in R)](https://github.com/atet/learn/blob/master/programming/README.md#atet--learn--programming)
 
@@ -176,6 +178,55 @@ iris1234 = merge(iris12, iris34, by = "id")
 str(iris1234)
 ```
 
+New columns can be added by specifying a column name that is not currently used and populating it:
+
+```{r chunk_id_manipulation3}
+iris1234$test = paste("test", nrow(iris1234):1)
+head(iris1234, n = 2)
+```
+
+Existing columns can be removed:
+
+```{r chunk_id_manipulation4}
+iris1234$test = NULL
+head(iris1234, n = 2)
+```
+
+New rows can be added with the concatenating `rbind` function above (must have the same columns):
+
+```{r chunk_id_manipulation5}
+new_row = data.frame(id = 151, Sepal.Length = NA, Sepal.Width = NA, Petal.Length = NA, Petal.Width = NA, Species = "test")
+iris1234 = rbind(iris1234, new_row)
+tail(iris1234, n = 2)
+```
+
+Existing rows can be removed:
+
+```{r chunk_id_manipulation6}
+iris1234 = iris1234[iris1234$id != 151,]
+tail(iris1234, n = 2)
+```
+
+By combining subsetting and manipulation, very specific data can be identified:
+
+```{r chunk_id_manipulation7}
+iris_filtered = iris1234[iris1234$Sepal.Length > 5 & iris1234$Species == "setosa", "id"]
+```
+
+..or removed:
+
+```{r chunk_id_manipulation8}
+iris_filtered = iris1234[iris1234$Sepal.Length <= 5 & iris1234$Species != "setosa", "id"]
+```
+
+..or replaced:
+
+```{r chunk_id_manipulation9}
+head(iris1234, n = 1)
+iris1234[iris1234$id == "1", ]$Species = "SETOSA"
+head(iris1234, n = 1)
+```
+
 ### Summarization
 
 Earlier we used the `summary()` function to quickly get information on all data in a `data.frame`:
@@ -202,11 +253,11 @@ var(iris1234$Sepal.Length)
 sd(iris1234$Sepal.Length)
 ```
 
-..or all percentile bins (e.g. 25% increments):
+..or all percentile bins (e.g. 5% increments):
 
 ```{r chunk_id_summarize4`}
-quantile(iris1234$Sepal.Length, probs = c(0, 0.25, 0.5, 0.75, 1))
-quantile(iris1234$Sepal.Length, probs = seq(0, 1, 0.25))
+quantile(iris1234$Sepal.Length, probs = c(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1))
+quantile(iris1234$Sepal.Length, probs = seq(0, 1, 0.05))
 ```
 
 ..or tabulating counts of unique values:
@@ -301,4 +352,8 @@ all.equal(result1, result2)
 
 TODO: Multi-threading
 
-<center>Copyright &copy; 2020-&infin; <a href="http://www.athitkao.com" target="_blank">Athit Kao, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></center>
+---
+
+Copyright &copy; 2020-&infin; [Athit Kao](http://www.athitkao.com), [Terms and Conditions](http://www.athitkao.com/tos.html)
+
+---
