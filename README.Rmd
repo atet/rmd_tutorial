@@ -49,7 +49,7 @@ plot(pressure)
 
 ---
 
-## Intermediate Tutorial
+## Intermediate Tutorial: Programming with R Language
 
 The following is an intermediate tutorial on data handling, manipulation, processing, and reporting in the R language.
 
@@ -57,20 +57,20 @@ An introduction to the R language can be found here: [Introduction to Programmin
 
 ### Prerequisites
 
-* R language and RStudio installed locally in your development environment: [Instructions](https://rstudio.com/products/rstudio/download/#download)
-* Clone this repository, e.g. in CLI:
+1. R language and RStudio installed locally in your development environment: [Instructions from RStudio](https://rstudio.com/products/rstudio/download/#download)
+2. Clone this repository, e.g. in CLI:
 
 ```console
 $ git clone git@github.com:atet/rmd_tutorial.git
 ```
 
-* Install required R packages for R Markdown support (only needs to be done once) and load them (needs to be done per session):
+3. Install required R packages for R Markdown support (only needs to be done once) and load them (needs to be done per session):
 
 ```r
 > install.packages("knitr"); install.packages("rmarkdown"); library(knitr); library("rmarkdown")
 ```
 
-* Ensure that your working directory is at the root of this repository, otherwise set it using the absolute file path:
+4. Ensure that your working directory is at the root of this repository, otherwise set it using the absolute file path:
    * You can use forward slash ('`/`') or escaped backslashes ('`\\`') for Windows file paths
 
 ```r
@@ -86,7 +86,7 @@ Everything in your R environment is an object that is stored in-memory, i.e. you
 You can quickly find information about a function by executing a '`?`' in front of the function name:
 
 ```r
-> ?set.seed
+> ?getwd
 ```
 
 ### Loading Data
@@ -107,7 +107,7 @@ iris4 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/ir
 
 ### Metadata
 
-Printing out basic object class information and number of row and columns:
+Basic object class information and number of row and columns in a `cat` (concatenate and print to console):
 
 ```{r chunk_id_metadata1}
 cat("The `iris1` object is of \"", class(iris1),"\" class and has ", nrow(iris1), " rows/", ncol(iris1), " columns.", sep = "")
@@ -125,7 +125,7 @@ str(iris1)
 summary(iris1)
 ```
 
-..or column and row names (row names typically character numbers by default): 
+..or column and row names (row names are typically character numbers by default): 
 
 ```{r chunk_id_metadata4}
 colnames(iris1)
@@ -134,9 +134,9 @@ rownames(iris1)
 
 ### Subsetting
 
-The `*.csv` files loaded are of object class `data.frame` in the current environment. These as simple two-dimensional, tabular data sets like an Excel spreadsheet with rows and columns.
+The `*.csv` files loaded are of object class `data.frame` in the current environment. These are simple two-dimensional, tabular data sets like an Excel spreadsheet with rows and columns.
 
-You can reference an entire column from the `data.frame` as a vector by using the '`$`' symbol:
+You can reference an entire column from the `data.frame` as a **vector** by using the '`$`' symbol:
 
 ```{r chunk_id_subsetting1}
 iris1$id
@@ -150,7 +150,7 @@ iris1[2:3, ]
 iris1[iris1$id == 4, ]
 ```
 
-..or subset columns by specifying conditions after the comma in the square brackets below (also subsetting rows to limit output):
+..or subset columns by specifying conditions after the comma in the square brackets below (also subsetting rows to 1:5 to limit output):
 
 > NOTE: If you subset a single column from a `data.frame`, it could be returned as a vector in most cases.
 
@@ -162,16 +162,16 @@ iris1[1:5, colnames(iris1) == "Petal.Width"]
 
 ### Manipulation
 
-The four data sets loaded were previously split from a larger data set, we will merge them all back together.
+The four data sets loaded were previously split from a larger data set, we will stitch them all back together.
 
-You can concatenate rows of data together:
+First we will concatenate rows of data together:
 
 ```{r chunk_id_manipulation1}
 iris12 = rbind(iris1, iris2)
 iris34 = rbind(iris3, iris4)
 ```
 
-Though you could also concatenate columns together, we will merge using a key row `$id` to ensure that out-of-order data is merged correctly:
+Secondly, though you could also concatenate columns together (using `cbind`), we will `merge` using a key row `$id` to ensure that out-of-order data is merged correctly:
 
 ```{r chunk_id_manipulation2}
 iris1234 = merge(iris12, iris34, by = "id")
@@ -292,7 +292,7 @@ plot(density(iris1234$Sepal.Length))
 
 #### One-Dimensional Data: Comparative Boxplots
 
-> NOTE: The tilde '`~`' below is basically saying "..where Sepal.Length _depends_ on Species"
+> NOTE: The tilde '`~`' below [(a.k.a formula interface)](https://www.datacamp.com/community/tutorials/r-formula-tutorial#using) is basically saying "..where Sepal.Length _depends_ on Species"
 
 ```{r chunk_id_boxplot}
 boxplot(iris1234$Sepal.Length ~ iris1234$Species)
@@ -335,7 +335,8 @@ The R language works natively on vectors, therefore there are large performance 
 
 ```{r chunk_id_speedtest1}
 set.seed(1)
-vc = rnorm(100000000)
+indices = 100000000 # Change me to benchmark, WARNING: 100,000,000 indices is ~800 MB of data
+vc = rnorm(indices) 
 system.time({
   result1 = 0
   for(i in 1:length(vc)){
