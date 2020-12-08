@@ -1,7 +1,7 @@
-R Markdown for GitHub
+R Markdown for GitHub with Intermediate R Tutorial
 ================
 
-## Markdown vs. R Markdown
+## 1\. Markdown vs. R Markdown
 
 This is an R Markdown document. R Markdown uses the Markdown language,
 but allows for the addition of authoring HTML, PDF, and MS Word
@@ -14,8 +14,8 @@ the RStudio IDE.
 
 ## Converting from `README.Rmd` → `README.md`
 
-You can clone this repository as a template for your own feature-rich
-`README.md` files on GitHub.
+You can ***clone this repository as a template*** for your own
+feature-rich `README.md` files on GitHub.
 
 If you open the `README.Rmd` document for editing in RStudio and click
 the **Knit** button, a normal Markdown document (`README.md`) will be
@@ -59,7 +59,7 @@ plot(pressure)
 
 -----
 
-## Intermediate Tutorial: Programming with R Language
+## 2\. Programming with R Language (Intermediate)
 
 The following is an intermediate tutorial on data handling,
 manipulation, processing, and reporting in the R language.
@@ -633,7 +633,41 @@ all.equal(result1, result2)
 
     ## [1] TRUE
 
-TODO: Multi-threading
+Multi-threading is extremely easy in R, but be mindful of RAM usage
+since R’s environment will be duplicated per thread:
+
+> NOTE: For an introduction to the functions used below, `lapply` and
+> `parLapplyLB`, please see: [Functions: Theory, Practice, and
+> Applications (in R)](https://github.com/atet/learn#computer-science)
+
+``` r
+sleep_times = c(1,2,3,4) # Sleep times in seconds
+system.time({
+  results = lapply(sleep_times, function(seconds){
+    Sys.sleep(seconds)
+  })
+})[3]
+```
+
+    ## elapsed 
+    ##   10.25
+
+> NOTE: Code below will work in Windows, MacOS, and Linux
+
+``` r
+library(parallel)
+system.time({
+  cluster = makePSOCKcluster( # Four localhost threads
+    c("localhost","localhost","localhost","localhost"))
+  results = parLapplyLB(cluster, sleep_times, function(seconds){
+    Sys.sleep(seconds)
+  })
+  stopCluster(cluster)
+})[3]
+```
+
+    ## elapsed 
+    ##    4.32
 
 -----
 
