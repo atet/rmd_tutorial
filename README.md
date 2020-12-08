@@ -59,7 +59,7 @@ plot(pressure)
 
 -----
 
-## Intermediate Tutorial
+## Intermediate Tutorial: Programming with R Language
 
 The following is an intermediate tutorial on data handling,
 manipulation, processing, and reporting in the R language.
@@ -70,18 +70,18 @@ R)](https://github.com/atet/learn/blob/master/programming/README.md#atet--learn-
 
 ### Prerequisites
 
-  - R language and RStudio installed locally in your development
-    environment:
-    [Instructions](https://rstudio.com/products/rstudio/download/#download)
-  - Clone this repository, e.g. in CLI:
+1.  R language and RStudio installed locally in your development
+    environment: [Instructions from
+    RStudio](https://rstudio.com/products/rstudio/download/#download)
+2.  Clone this repository, e.g. in CLI:
 
 <!-- end list -->
 
 ``` console
-$ git clone git@github.com:atet/rmd_tutorial.git
+$ git clone https://github.com/atet/rmd_tutorial.git
 ```
 
-  - Install required R packages for R Markdown support (only needs to be
+3.  Install required R packages for R Markdown support (only needs to be
     done once) and load them (needs to be done per session):
 
 <!-- end list -->
@@ -90,7 +90,7 @@ $ git clone git@github.com:atet/rmd_tutorial.git
 > install.packages("knitr"); install.packages("rmarkdown"); library(knitr); library("rmarkdown")
 ```
 
-  - Ensure that your working directory is at the root of this
+4.  Ensure that your working directory is at the root of this
     repository, otherwise set it using the absolute file path:
       - You can use forward slash (‘`/`’) or escaped backslashes
         (‘`\\`’) for Windows file paths
@@ -113,7 +113,7 @@ You can quickly find information about a function by executing a ‘`?`’
 in front of the function name:
 
 ``` r
-> ?set.seed
+> ?getwd
 ```
 
 ### Loading Data
@@ -135,8 +135,8 @@ iris4 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/ir
 
 ### Metadata
 
-Printing out basic object class information and number of row and
-columns:
+Basic object class information and number of row and columns in a `cat`
+(concatenate and print to console):
 
 ``` r
 cat("The `iris1` object is of \"", class(iris1),"\" class and has ", nrow(iris1), " rows/", ncol(iris1), " columns.", sep = "")
@@ -171,7 +171,7 @@ summary(iris1)
     ##  3rd Qu.:56.5   3rd Qu.:5.700   3rd Qu.:3.500   3rd Qu.:4.000   3rd Qu.:1.250  
     ##  Max.   :75.0   Max.   :7.000   Max.   :4.400   Max.   :4.900   Max.   :1.800
 
-..or column and row names (row names typically character numbers by
+..or column and row names (row names are typically character numbers by
 default):
 
 ``` r
@@ -193,11 +193,11 @@ rownames(iris1)
 ### Subsetting
 
 The `*.csv` files loaded are of object class `data.frame` in the current
-environment. These as simple two-dimensional, tabular data sets like an
+environment. These are simple two-dimensional, tabular data sets like an
 Excel spreadsheet with rows and columns.
 
-You can reference an entire column from the `data.frame` as a vector by
-using the ‘`$`’ symbol:
+You can reference an entire column from the `data.frame` as a **vector**
+by using the ‘`$`’ symbol:
 
 ``` r
 iris1$id
@@ -233,7 +233,7 @@ iris1[iris1$id == 4, ]
     ## 4  4          4.6         3.1          1.5         0.2
 
 ..or subset columns by specifying conditions after the comma in the
-square brackets below (also subsetting rows to limit output):
+square brackets below (also subsetting rows to 1:5 to limit output):
 
 > NOTE: If you subset a single column from a `data.frame`, it could be
 > returned as a vector in most cases.
@@ -269,17 +269,18 @@ iris1[1:5, colnames(iris1) == "Petal.Width"]
 ### Manipulation
 
 The four data sets loaded were previously split from a larger data set,
-we will merge them all back together.
+we will stitch them all back together.
 
-You can concatenate rows of data together:
+First we will concatenate rows of data together:
 
 ``` r
 iris12 = rbind(iris1, iris2)
 iris34 = rbind(iris3, iris4)
 ```
 
-Though you could also concatenate columns together, we will merge using
-a key row `$id` to ensure that out-of-order data is merged correctly:
+Secondly, though you could also concatenate columns together (using
+`cbind`), we will `merge` using a key row `$id` to ensure that
+out-of-order data is merged correctly:
 
 ``` r
 iris1234 = merge(iris12, iris34, by = "id")
@@ -306,7 +307,7 @@ head(iris1234, n = 2)
     ## 1  1          5.1         3.5          1.4         0.2  setosa test 150
     ## 2  2          4.9         3.0          1.4         0.2  setosa test 149
 
-Existing columns can be removed:
+..and existing columns can be removed:
 
 ``` r
 iris1234$test = NULL
@@ -330,7 +331,7 @@ tail(iris1234, n = 2)
     ## 150 150          5.9           3          5.1         1.8 virginica
     ## 151 151           NA          NA           NA          NA      test
 
-Existing rows can be removed:
+..and existing rows can be removed:
 
 ``` r
 iris1234 = iris1234[iris1234$id != 151,]
@@ -517,8 +518,9 @@ plot(density(iris1234$Sepal.Length))
 
 #### One-Dimensional Data: Comparative Boxplots
 
-> NOTE: The tilde ‘`~`’ below is basically saying “..where Sepal.Length
-> *depends* on Species”
+> NOTE: The tilde ‘`~`’ below [(a.k.a formula
+> interface)](https://www.datacamp.com/community/tutorials/r-formula-tutorial#using)
+> is basically saying “..where Sepal.Length *depends* on Species”
 
 ``` r
 boxplot(iris1234$Sepal.Length ~ iris1234$Species)
@@ -537,26 +539,38 @@ plot(iris1234$Sepal.Length, iris1234$Sepal.Width)
 #### Two-Dimensional Data: Comparative Scatterplot
 
 ``` r
-# Default, all points are black
-plot(iris1234$Sepal.Length, iris1234$Sepal.Width)
-# Subset out Setosa and add blue points
-points(iris1234[iris1234$Species == "setosa",]$Sepal.Length, iris1234[iris1234$Species == "setosa",]$Sepal.Width, col = "blue")
-# Subset out Versicolor and red points
-points(iris1234[iris1234$Species == "versicolor",]$Sepal.Length, iris1234[iris1234$Species == "versicolor",]$Sepal.Width, col = "red")
+# Default, all points are black (default is open circles)
+plot(
+  iris1234$Sepal.Length,
+  iris1234$Sepal.Width)
+# Subset out Setosa data and overlay blue points over existing black points
+points(
+  iris1234[iris1234$Species == "setosa" || iris1234$Species == "SETOSA",]$Sepal.Length,
+  iris1234[iris1234$Species == "setosa" || iris1234$Species == "SETOSA",]$Sepal.Width, 
+  col = "blue")
+# Subset out Versicolor data and overlay red points over existing black points
+points(
+  iris1234[iris1234$Species == "versicolor",]$Sepal.Length,
+  iris1234[iris1234$Species == "versicolor",]$Sepal.Width, col = "red")
 ```
 
 ![](.img/README_chunk_id_scatterplot2-1.png)<!-- -->
 
 ### Output
 
-The `data.frame` objects can be saved back to disk as a `*.csv` (or any
-other delimiter):
+The `data.frame` objects can be saved back to disk as a `*.csv`:
 
 ``` r
 write.csv(iris1234, "./dat/iris1234.csv", row.names = FALSE)
 ```
 
-..or as an `*.rds` R object (default is compressed).
+..or any other delimiter (e.g. semi-colons):
+
+``` r
+write.table(iris1234, "./dat/iris1234.txt", sep = ";", row.names = FALSE)
+```
+
+..or as an `*.rds` R object (default is compressed):
 
 ``` r
 saveRDS(iris1234, "./dat/iris1234.rds", compress = TRUE)
@@ -570,7 +584,8 @@ data structures:
 
 ``` r
 set.seed(1)
-vc = rnorm(100000000)
+indices = 100000000 # Change me to benchmark, WARNING: 100,000,000 indices is ~800 MB of data
+vc = rnorm(indices) 
 system.time({
   result1 = 0
   for(i in 1:length(vc)){
@@ -580,7 +595,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.73
+    ##    3.76
 
 ``` r
 system.time({
@@ -589,7 +604,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    0.13
+    ##    0.12
 
 ``` r
 all.equal(result1, result2)
@@ -601,7 +616,13 @@ TODO: Multi-threading
 
 -----
 
-Copyright © 2020-∞ [Athit Kao](http://www.athitkao.com), [Terms and
-Conditions](http://www.athitkao.com/tos.html)
+<p align="center">
+
+Copyright © 2020-∞
+<a href="http://www.athitkao.com" target="_blank">Athit Kao</a>,
+<a href="http://www.athitkao.com/tos.html" target="_blank">Terms and
+Conditions</a>
+
+</p>
 
 -----

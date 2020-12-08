@@ -61,7 +61,7 @@ An introduction to the R language can be found here: [Introduction to Programmin
 2. Clone this repository, e.g. in CLI:
 
 ```console
-$ git clone git@github.com:atet/rmd_tutorial.git
+$ git clone https://github.com/atet/rmd_tutorial.git
 ```
 
 3. Install required R packages for R Markdown support (only needs to be done once) and load them (needs to be done per session):
@@ -185,7 +185,7 @@ iris1234$test = paste("test", nrow(iris1234):1)
 head(iris1234, n = 2)
 ```
 
-Existing columns can be removed:
+..and existing columns can be removed:
 
 ```{r chunk_id_manipulation4}
 iris1234$test = NULL
@@ -200,7 +200,7 @@ iris1234 = rbind(iris1234, new_row)
 tail(iris1234, n = 2)
 ```
 
-Existing rows can be removed:
+..and existing rows can be removed:
 
 ```{r chunk_id_manipulation6}
 iris1234 = iris1234[iris1234$id != 151,]
@@ -307,23 +307,36 @@ plot(iris1234$Sepal.Length, iris1234$Sepal.Width)
 #### Two-Dimensional Data: Comparative Scatterplot
 
 ```{r chunk_id_scatterplot2}
-# Default, all points are black
-plot(iris1234$Sepal.Length, iris1234$Sepal.Width)
-# Subset out Setosa and add blue points
-points(iris1234[iris1234$Species == "setosa",]$Sepal.Length, iris1234[iris1234$Species == "setosa",]$Sepal.Width, col = "blue")
-# Subset out Versicolor and red points
-points(iris1234[iris1234$Species == "versicolor",]$Sepal.Length, iris1234[iris1234$Species == "versicolor",]$Sepal.Width, col = "red")
+# Default, all points are black (default is open circles)
+plot(
+  iris1234$Sepal.Length,
+  iris1234$Sepal.Width)
+# Subset out Setosa data and overlay blue points over existing black points
+points(
+  iris1234[iris1234$Species == "setosa" || iris1234$Species == "SETOSA",]$Sepal.Length,
+  iris1234[iris1234$Species == "setosa" || iris1234$Species == "SETOSA",]$Sepal.Width, 
+  col = "blue")
+# Subset out Versicolor data and overlay red points over existing black points
+points(
+  iris1234[iris1234$Species == "versicolor",]$Sepal.Length,
+  iris1234[iris1234$Species == "versicolor",]$Sepal.Width, col = "red")
 ```
 
 ### Output
 
-The `data.frame` objects can be saved back to disk as a `*.csv` (or any other delimiter):
+The `data.frame` objects can be saved back to disk as a `*.csv`:
 
 ```r
 write.csv(iris1234, "./dat/iris1234.csv", row.names = FALSE)
 ```
 
-..or as an `*.rds` R object (default is compressed).
+..or any other delimiter (e.g. semi-colons):
+
+```r
+write.table(iris1234, "./dat/iris1234.txt", sep = ";", row.names = FALSE)
+```
+
+..or as an `*.rds` R object (default is compressed):
 
 ```r
 saveRDS(iris1234, "./dat/iris1234.rds", compress = TRUE)
@@ -355,6 +368,6 @@ TODO: Multi-threading
 
 ---
 
-Copyright &copy; 2020-&infin; [Athit Kao](http://www.athitkao.com), [Terms and Conditions](http://www.athitkao.com/tos.html)
+<p align="center">Copyright &copy; 2020-&infin; <a href="http://www.athitkao.com" target="_blank">Athit Kao</a>, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>
 
 ---
