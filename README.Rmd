@@ -272,6 +272,18 @@ table(iris1234$Species)
 table(cut(iris1234$Sepal.Length, breaks = c(0, 4, 5, 6, 7, Inf)))
 ```
 
+You could also see all the unique values an object contains:
+
+```{r chunk_id_summarize7`}
+unique(iris1234$Species)
+```
+
+..or even remove all duplicates from a `data.frame` (will keep the first occurrance):
+
+```{r chunk_id_summarize8`}
+iris1234[!duplicated(iris1234$Species),]
+```
+
 ### Visualization
 
 Data can be quickly visualized for sanity checks or highly polished for publication quality figures. The following are a few popular and basic visualizations.

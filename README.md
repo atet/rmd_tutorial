@@ -491,6 +491,27 @@ table(cut(iris1234$Sepal.Length, breaks = c(0, 4, 5, 6, 7, Inf)))
     ##   (0,4]   (4,5]   (5,6]   (6,7] (7,Inf] 
     ##       0      32      57      49      12
 
+You could also see all the unique values an object contains:
+
+``` r
+unique(iris1234$Species)
+```
+
+    ## [1] "SETOSA"     "setosa"     "versicolor" "virginica"
+
+..or even remove all duplicates from a `data.frame` (will keep the first
+occurrance):
+
+``` r
+iris1234[!duplicated(iris1234$Species),]
+```
+
+    ##      id Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+    ## 1     1          5.1         3.5          1.4         0.2     SETOSA
+    ## 2     2          4.9         3.0          1.4         0.2     setosa
+    ## 51   51          7.0         3.2          4.7         1.4 versicolor
+    ## 101 101          6.3         3.3          6.0         2.5  virginica
+
 ### Visualization
 
 Data can be quickly visualized for sanity checks or highly polished for
@@ -595,7 +616,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.76
+    ##    3.75
 
 ``` r
 system.time({
@@ -604,7 +625,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    0.12
+    ##    0.14
 
 ``` r
 all.equal(result1, result2)
