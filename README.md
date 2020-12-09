@@ -622,7 +622,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.91
+    ##    3.86
 
 ..see how much faster leveraging native vectorization capabilities of R:
 
@@ -656,7 +656,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##   10.22
+    ##   10.17
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -673,18 +673,18 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.58
+    ##    4.57
 
 > NOTE: For an introduction to the functions used below, `lapply` and
 > `parLapplyLB`, please see: [Functions: Theory, Practice, and
 > Applications (in R)](https://github.com/atet/learn#computer-science)
 
-#### Advanced Visualization
+#### Visualization
 
 As seen in [Two-Dimensional Data: Comparative
-Scatterplot](#two-dimensional-data--comparative-scatterplot) above, the
-concept of visualization in R is layering new information on existing
-visuals.
+Scatterplot](#two-dimensional-data-comparative-scatterplot) above, the
+concept of visualization in R is ***layering new information on existing
+visuals***
 
 Let’s break down that figure here, render the base layer:
 
@@ -712,7 +712,8 @@ points(
 
 ![](.img/README_chunk_id_advancedvisual2-1.png)<!-- -->
 
-..add a new layer with the Versicolor `$Species` group in red:
+..add a new layer with the Versicolor `$Species` group in red (which
+leaves Virginica group as default black):
 
 ``` r
 plot(
@@ -736,13 +737,9 @@ points(
 
 -----
 
-<p align="center">
-
 Copyright © 2020-∞
 <a href="http://www.athitkao.com" target="_blank">Athit Kao</a>,
 <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and
 Conditions</a>
-
-</p>
 
 -----

@@ -412,9 +412,9 @@ system.time({
 
 > NOTE: For an introduction to the functions used below, `lapply` and `parLapplyLB`, please see: [Functions: Theory, Practice, and Applications (in R)](https://github.com/atet/learn#computer-science)
 
-#### Advanced Visualization
+#### Visualization
 
-As seen in [Two-Dimensional Data: Comparative Scatterplot](#two-dimensional-data--comparative-scatterplot) above, the concept of visualization in R is layering new information on existing visuals.
+As seen in [Two-Dimensional Data: Comparative Scatterplot](#two-dimensional-data-comparative-scatterplot) above, the concept of visualization in R is **_layering new information on existing visuals_**
 
 Let's break down that figure here, render the base layer:
 
@@ -438,7 +438,7 @@ points(
   col = "blue")
 ```
 
-..add a new layer with the Versicolor `$Species` group in red:
+..add a new layer with the Versicolor `$Species` group in red (which leaves Virginica group as default black):
 
 ```{r chunk_id_advancedvisual3}
 plot(
@@ -458,6 +458,6 @@ points(
 
 ---
 
-<p align="center">Copyright &copy; 2020-&infin; <a href="http://www.athitkao.com" target="_blank">Athit Kao</a>, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>
+Copyright &copy; 2020-&infin; <a href="http://www.athitkao.com" target="_blank">Athit Kao</a>, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a>
 
 ---
