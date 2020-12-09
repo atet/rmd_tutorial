@@ -1,7 +1,16 @@
 R Markdown for GitHub with Intermediate R Tutorial
 ================
 
-## 1\. Markdown vs. R Markdown
+-----
+
+## Table of Contents
+
+  - [R Markdown for GitHub](#markdown-vs-r-markdown)
+  - [Intermediate R Tutorial](#intermediate-programming-with-r)
+
+-----
+
+## Markdown vs. R Markdown
 
 This is an R Markdown document. R Markdown uses the Markdown language,
 but allows for the addition of authoring HTML, PDF, and MS Word
@@ -15,7 +24,8 @@ the RStudio IDE.
 ### Converting from `README.Rmd` → `README.md`
 
 You can ***clone this repository as a template*** for your own
-feature-rich `README.md` files on GitHub.
+feature-rich `README.md` files on GitHub (and other platforms like
+Bitbucket).
 
 If you open the `README.Rmd` document for editing in RStudio and click
 the **Knit** button, a normal Markdown document (`README.md`) will be
@@ -40,7 +50,7 @@ summary(cars)
 
 > `cars` is one of many default example data sets in the R language.
 
-\#3\# Images
+### Images
 
 You can also embed plots, for example:
 
@@ -57,9 +67,11 @@ plot(pressure)
 
   - <https://stackoverflow.com/a/39816334>
 
+[**Back to Top**](#table-of-contents)
+
 -----
 
-## 2\. Programming with R Language (Intermediate)
+## Intermediate Programming with R
 
 The following is an intermediate tutorial on data handling,
 manipulation, processing, and reporting in the R language.
@@ -622,7 +634,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.86
+    ##    3.93
 
 ..see how much faster leveraging native vectorization capabilities of R:
 
@@ -656,7 +668,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##   10.17
+    ##   10.18
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -673,7 +685,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.57
+    ##    4.54
 
 > NOTE: For an introduction to the functions used below, `lapply` and
 > `parLapplyLB`, please see: [Functions: Theory, Practice, and
@@ -734,6 +746,8 @@ points(
 > NOTE: For a more detailed overview of visualization in R, please see:
 > [Data Visualization: Theory, Practice, and Applications (in
 > R)](https://github.com/atet/learn#data-science)
+
+[**Back to Top**](#table-of-contents)
 
 -----
 
