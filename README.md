@@ -12,7 +12,7 @@ the RStudio IDE.
   - For more details on using R Markdown see
     <http://rmarkdown.rstudio.com>.
 
-## Converting from `README.Rmd` → `README.md`
+### Converting from `README.Rmd` → `README.md`
 
 You can ***clone this repository as a template*** for your own
 feature-rich `README.md` files on GitHub.
@@ -22,7 +22,7 @@ the **Knit** button, a normal Markdown document (`README.md`) will be
 generated that includes both content as well as the output of any
 embedded R code chunks within the document.
 
-## Code and output
+### Code and output
 
 You can embed an R code chunk like this:
 
@@ -40,7 +40,7 @@ summary(cars)
 
 > `cars` is one of many default example data sets in the R language.
 
-## Images
+\#3\# Images
 
 You can also embed plots, for example:
 
@@ -53,7 +53,7 @@ plot(pressure)
 > The output image from this code execution will be automatically saved
 > in the `.img` subdirectory.
 
-## Reference
+### Reference
 
   - <https://stackoverflow.com/a/39816334>
 
@@ -560,16 +560,16 @@ plot(iris1234$Sepal.Length, iris1234$Sepal.Width)
 #### Two-Dimensional Data: Comparative Scatterplot
 
 ``` r
-# Default, all points are black (default is open circles)
+# 1. Default layer, no points (default is open circles)
 plot(
   iris1234$Sepal.Length,
   iris1234$Sepal.Width)
-# Subset out Setosa data and overlay blue points over existing black points
+# 2. Subset out Setosa data and overlay blue points over existing black points
 points(
-  iris1234[iris1234$Species == "setosa" || iris1234$Species == "SETOSA",]$Sepal.Length,
-  iris1234[iris1234$Species == "setosa" || iris1234$Species == "SETOSA",]$Sepal.Width, 
+  iris1234[iris1234$Species == "setosa" | iris1234$Species == "SETOSA",]$Sepal.Length,
+  iris1234[iris1234$Species == "setosa" | iris1234$Species == "SETOSA",]$Sepal.Width,
   col = "blue")
-# Subset out Versicolor data and overlay red points over existing black points
+# 3. Subset out Versicolor data and overlay red points over existing black points
 points(
   iris1234[iris1234$Species == "versicolor",]$Sepal.Length,
   iris1234[iris1234$Species == "versicolor",]$Sepal.Width, col = "red")
@@ -579,7 +579,8 @@ points(
 
 ### Output
 
-The `data.frame` objects can be saved back to disk as a `*.csv`:
+Any object can be saved to disk; let’s save the `data.frame` as a
+`*.csv`:
 
 ``` r
 write.csv(iris1234, "./dat/iris1234.csv", row.names = FALSE)
@@ -599,9 +600,14 @@ saveRDS(iris1234, "./dat/iris1234.rds", compress = TRUE)
 
 ### Protips
 
+#### Vectorization
+
 The R language works natively on vectors, therefore there are large
 performance gains leveraging this functionality compared to looping over
-data structures:
+data structures
+
+Let’s create a vector of random numbers and iterate over the vector in a
+loop to sum the values:
 
 ``` r
 set.seed(1)
@@ -616,7 +622,9 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.75
+    ##    3.91
+
+..see how much faster leveraging native vectorization capabilities of R:
 
 ``` r
 system.time({
@@ -633,12 +641,10 @@ all.equal(result1, result2)
 
     ## [1] TRUE
 
+#### Parallelism
+
 Multi-threading is extremely easy in R, but be mindful of RAM usage
 since R’s environment will be duplicated per thread:
-
-> NOTE: For an introduction to the functions used below, `lapply` and
-> `parLapplyLB`, please see: [Functions: Theory, Practice, and
-> Applications (in R)](https://github.com/atet/learn#computer-science)
 
 ``` r
 sleep_times = c(1,2,3,4) # Sleep times in seconds
@@ -650,7 +656,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##   10.25
+    ##   10.22
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -667,7 +673,66 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.32
+    ##    4.58
+
+> NOTE: For an introduction to the functions used below, `lapply` and
+> `parLapplyLB`, please see: [Functions: Theory, Practice, and
+> Applications (in R)](https://github.com/atet/learn#computer-science)
+
+#### Advanced Visualization
+
+As seen in [Two-Dimensional Data: Comparative
+Scatterplot](#two-dimensional-data--comparative-scatterplot) above, the
+concept of visualization in R is layering new information on existing
+visuals.
+
+Let’s break down that figure here, render the base layer:
+
+``` r
+# 1. Default layer, all points are black (default is open circles)
+plot(
+  iris1234$Sepal.Length,
+  iris1234$Sepal.Width)
+```
+
+![](.img/README_chunk_id_advancedvisual1-1.png)<!-- -->
+
+..add a new layer with the Setosa `$Species` group in blue:
+
+``` r
+plot(
+  iris1234$Sepal.Length,
+  iris1234$Sepal.Width)
+# 2. Subset out Setosa data and overlay blue points over existing black points
+points(
+  iris1234[iris1234$Species == "setosa" | iris1234$Species == "SETOSA",]$Sepal.Length,
+  iris1234[iris1234$Species == "setosa" | iris1234$Species == "SETOSA",]$Sepal.Width, 
+  col = "blue")
+```
+
+![](.img/README_chunk_id_advancedvisual2-1.png)<!-- -->
+
+..add a new layer with the Versicolor `$Species` group in red:
+
+``` r
+plot(
+  iris1234$Sepal.Length,
+  iris1234$Sepal.Width)
+points(
+  iris1234[iris1234$Species == "setosa" | iris1234$Species == "SETOSA",]$Sepal.Length,
+  iris1234[iris1234$Species == "setosa" | iris1234$Species == "SETOSA",]$Sepal.Width, 
+  col = "blue")
+# 3. Subset out Versicolor data and overlay red points over existing black points
+points(
+  iris1234[iris1234$Species == "versicolor",]$Sepal.Length,
+  iris1234[iris1234$Species == "versicolor",]$Sepal.Width, col = "red")
+```
+
+![](.img/README_chunk_id_advancedvisual3-1.png)<!-- -->
+
+> NOTE: For a more detailed overview of visualization in R, please see:
+> [Data Visualization: Theory, Practice, and Applications (in
+> R)](https://github.com/atet/learn#data-science)
 
 -----
 
