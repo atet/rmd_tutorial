@@ -10,15 +10,29 @@ knitr::opts_chunk$set(
 )
 ```
 
+# [atet](https://github.com/atet) / [**_rmd_tutorial_**](https://github.com/atet/rmd_tutorial#r-markdown-for-github-with-intermediate-r-tutorial)
+
 ---
 
+<a name=""></a>
 ## Table of Contents
 
 * [R Markdown for GitHub](#markdown-vs-r-markdown)
 * [Intermediate R Tutorial](#intermediate-programming-with-r)
-
+   * [Prerequisites](#prerequisites)
+   * [Background](#background)
+   * [Loading Data](#loading-data)
+   * [Metadata](#metadata)
+   * [Subsetting](#subsetting)
+   * [Manipulation](#manipulation)
+   * [Summarization](#summarization)
+   * [Visualization](#visualization)
+   * [Output](#output)
+   * [Protips](#protips)
+   
 ---
 
+<a name="markdown-vs-r-markdown"></a>
 ## Markdown vs. R Markdown
 
 This is an R Markdown document. R Markdown uses the Markdown language, but allows for the addition of authoring HTML, PDF, and MS Word documents with functional code snippets and actual outputs from within the RStudio IDE.
@@ -60,12 +74,18 @@ plot(pressure)
 
 ---
 
+<a name="intermediate-programming-with-r"></a>
 ## Intermediate Programming with R
 
 The following is an intermediate tutorial on data handling, manipulation, processing, and reporting in the R language.
 
 An introduction to the R language can be found here: [Introduction to Programming (in R)](https://github.com/atet/learn/blob/master/programming/README.md#atet--learn--programming)
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="prerequisites"></a>
 ### Prerequisites
 
 1. R language and RStudio installed locally in your development environment: [Instructions from RStudio](https://rstudio.com/products/rstudio/download/#download)
@@ -90,6 +110,11 @@ $ git clone https://github.com/atet/rmd_tutorial.git
 > setwd("<CORRECT_FILE_PATH>")
 ```
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="background"></a>
 ### Background
 
 Everything in your R environment is an object that is stored in-memory, i.e. you can work with as large of a data set as you have RAM (_and swap_) on your development machine.
@@ -100,6 +125,11 @@ You can quickly find information about a function by executing a '`?`' in front 
 > ?getwd
 ```
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="loading-data"></a>
 ### Loading Data
 
 Data can be loaded directly from disk using absolute or relative paths to current working directory:
@@ -116,6 +146,11 @@ iris3 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/ir
 iris4 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/iris4.csv"))
 ```
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="metadata"></a>
 ### Metadata
 
 Basic object class information and number of row and columns in a `cat` (concatenate and print to console):
@@ -143,6 +178,11 @@ colnames(iris1)
 rownames(iris1)
 ```
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="subsetting"></a>
 ### Subsetting
 
 The `*.csv` files loaded are of object class `data.frame` in the current environment. These are simple two-dimensional, tabular data sets like an Excel spreadsheet with rows and columns.
@@ -171,6 +211,11 @@ iris1[1:5, c("Sepal.Width", "Petal.Length")]
 iris1[1:5, colnames(iris1) == "Petal.Width"]
 ```
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="manipulation"></a>
 ### Manipulation
 
 The four data sets loaded were previously split from a larger data set, we will stitch them all back together.
@@ -238,6 +283,11 @@ iris1234[iris1234$id == "1", ]$Species = "SETOSA"
 head(iris1234, n = 1)
 ```
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="summarization"></a>
 ### Summarization
 
 Earlier we used the `summary()` function to quickly get information on all data in a `data.frame`:
@@ -295,6 +345,11 @@ unique(iris1234$Species)
 iris1234[!duplicated(iris1234$Species),]
 ```
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="visualization"></a>
 ### Visualization
 
 Data can be quickly visualized for sanity checks or highly polished for publication quality figures. The following are a few popular and basic visualizations.
@@ -327,6 +382,7 @@ boxplot(iris1234$Sepal.Length ~ iris1234$Species)
 plot(iris1234$Sepal.Length, iris1234$Sepal.Width)
 ```
 
+<a name="two-dimensional-data-comparative-scatterplot"></a>
 #### Two-Dimensional Data: Comparative Scatterplot
 
 ```{r chunk_id_scatterplot2}
@@ -345,6 +401,11 @@ points(
   iris1234[iris1234$Species == "versicolor",]$Sepal.Width, col = "red")
 ```
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="output"></a>
 ### Output
 
 Any object can be saved to disk; let's save the `data.frame` as a `*.csv`:
@@ -365,6 +426,11 @@ write.table(iris1234, "./dat/iris1234.txt", sep = ";", row.names = FALSE)
 saveRDS(iris1234, "./dat/iris1234.rds", compress = TRUE)
 ```
 
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="protips"></a>
 ### Protips
 
 #### Vectorization
