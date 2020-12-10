@@ -1,14 +1,30 @@
 R Markdown for GitHub with Intermediate R Tutorial
 ================
 
+# [atet](https://github.com/atet) / [***rmd\_tutorial***](https://github.com/atet/rmd_tutorial#r-markdown-for-github-with-intermediate-r-tutorial)
+
 -----
+
+<a name=""></a>
 
 ## Table of Contents
 
   - [R Markdown for GitHub](#markdown-vs-r-markdown)
   - [Intermediate R Tutorial](#intermediate-programming-with-r)
+      - [Prerequisites](#prerequisites)
+      - [Background](#background)
+      - [Loading Data](#loading-data)
+      - [Metadata](#metadata)
+      - [Subsetting](#subsetting)
+      - [Manipulation](#manipulation)
+      - [Summarization](#summarization)
+      - [Visualization](#visualization)
+      - [Output](#output)
+      - [Protips](#protips)
 
 -----
+
+<a name="markdown-vs-r-markdown"></a>
 
 ## Markdown vs. R Markdown
 
@@ -71,6 +87,8 @@ plot(pressure)
 
 -----
 
+<a name="intermediate-programming-with-r"></a>
+
 ## Intermediate Programming with R
 
 The following is an intermediate tutorial on data handling,
@@ -79,6 +97,12 @@ manipulation, processing, and reporting in the R language.
 An introduction to the R language can be found here: [Introduction to
 Programming (in
 R)](https://github.com/atet/learn/blob/master/programming/README.md#atet--learn--programming)
+
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="prerequisites"></a>
 
 ### Prerequisites
 
@@ -115,6 +139,12 @@ $ git clone https://github.com/atet/rmd_tutorial.git
 > setwd("<CORRECT_FILE_PATH>")
 ```
 
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="background"></a>
+
 ### Background
 
 Everything in your R environment is an object that is stored in-memory,
@@ -127,6 +157,12 @@ in front of the function name:
 ``` r
 > ?getwd
 ```
+
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="loading-data"></a>
 
 ### Loading Data
 
@@ -145,7 +181,15 @@ iris3 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/ir
 iris4 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/iris4.csv"))
 ```
 
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="metadata"></a>
+
 ### Metadata
+
+<a name="cat"></a>
 
 Basic object class information and number of row and columns in a `cat`
 (concatenate and print to console):
@@ -201,6 +245,12 @@ rownames(iris1)
     ## [31] "31" "32" "33" "34" "35" "36" "37" "38" "39" "40" "41" "42" "43" "44" "45"
     ## [46] "46" "47" "48" "49" "50" "51" "52" "53" "54" "55" "56" "57" "58" "59" "60"
     ## [61] "61" "62" "63" "64" "65" "66" "67" "68" "69" "70" "71" "72" "73" "74" "75"
+
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="subsetting"></a>
 
 ### Subsetting
 
@@ -277,6 +327,12 @@ iris1[1:5, colnames(iris1) == "Petal.Width"]
 ```
 
     ## [1] 0.2 0.2 0.2 0.2 0.2
+
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="manipulation"></a>
 
 ### Manipulation
 
@@ -383,6 +439,12 @@ head(iris1234, n = 1)
 
     ##   id Sepal.Length Sepal.Width Petal.Length Petal.Width Species
     ## 1  1          5.1         3.5          1.4         0.2  SETOSA
+
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="summarization"></a>
 
 ### Summarization
 
@@ -524,6 +586,12 @@ iris1234[!duplicated(iris1234$Species),]
     ## 51   51          7.0         3.2          4.7         1.4 versicolor
     ## 101 101          6.3         3.3          6.0         2.5  virginica
 
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="visualization"></a>
+
 ### Visualization
 
 Data can be quickly visualized for sanity checks or highly polished for
@@ -569,6 +637,8 @@ plot(iris1234$Sepal.Length, iris1234$Sepal.Width)
 
 ![](.img/README_chunk_id_scatterplot1-1.png)<!-- -->
 
+<a name="two-dimensional-data-comparative-scatterplot"></a>
+
 #### Two-Dimensional Data: Comparative Scatterplot
 
 ``` r
@@ -589,7 +659,28 @@ points(
 
 ![](.img/README_chunk_id_scatterplot2-1.png)<!-- -->
 
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="output"></a>
+
 ### Output
+
+As seen in [Metadata](#cat) above, we can print out debugging or logging
+information to the console using `cat` or `print`:
+
+``` r
+cat("Hello")
+```
+
+    ## Hello
+
+``` r
+print("World")
+```
+
+    ## [1] "World"
 
 Any object can be saved to disk; let’s save the `data.frame` as a
 `*.csv`:
@@ -610,7 +701,16 @@ write.table(iris1234, "./dat/iris1234.txt", sep = ";", row.names = FALSE)
 saveRDS(iris1234, "./dat/iris1234.rds", compress = TRUE)
 ```
 
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="protips"></a>
+
 ### Protips
+
+Here are three protips to get you curious on pursuing advanced R
+capabilities
 
 #### Vectorization
 
@@ -634,7 +734,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.93
+    ##    4.38
 
 ..see how much faster leveraging native vectorization capabilities of R:
 
@@ -645,7 +745,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    0.14
+    ##    0.13
 
 ``` r
 all.equal(result1, result2)
@@ -668,7 +768,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##   10.18
+    ##    10.2
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -685,7 +785,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.54
+    ##    4.67
 
 > NOTE: For an introduction to the functions used below, `lapply` and
 > `parLapplyLB`, please see: [Functions: Theory, Practice, and
@@ -751,9 +851,11 @@ points(
 
 -----
 
-Copyright © 2020-∞
-<a href="http://www.athitkao.com" target="_blank">Athit Kao</a>,
-<a href="http://www.athitkao.com/tos.html" target="_blank">Terms and
-Conditions</a>
+<center>
+
+Copyright © 2020-∞ [Athit Kao](http://www.athitkao.com), [Terms and
+Conditions](http://www.athitkao.com/tos.html)
+
+</center>
 
 -----
