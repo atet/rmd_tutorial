@@ -669,6 +669,18 @@ points(
 
 ![](.img/README_chunk_id_scatterplot2-1.png)<!-- -->
 
+#### All Dimensions: Scatterplot Matrix
+
+> NOTE: This visualization gets crowded very quickly with increasing
+> dimensions
+
+``` r
+pairs(~ iris1234$Sepal.Length + iris1234$Sepal.Width + iris1234$Petal.Length + iris1234$Petal.Width,
+      col = as.factor(iris1234$Species))
+```
+
+![](.img/README_chunk_id_scatterplot3-1.png)<!-- -->
+
 [**Back to Top**](#table-of-contents)
 
 -----
@@ -744,7 +756,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.87
+    ##    4.06
 
 ..see how much faster leveraging native vectorization capabilities of R:
 
@@ -778,7 +790,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##   10.15
+    ##   10.12
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -795,7 +807,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.58
+    ##    4.57
 
 > NOTE: For an introduction to the functions used below, `lapply` and
 > `parLapplyLB`, please see: [Functions: Theory, Practice, and
@@ -861,6 +873,6 @@ points(
 
 -----
 
-<p align="center">Copyright &copy; 2019-&infin; <a href="http://www.athitkao.com/tos.html" target="_blank">Athit Kao</a>, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>
+<p align="center">Copyright &copy; 2020-&infin; <a href="https://www.athitkao.com" target="_blank">Athit Kao</a>, <a href="https://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>
 
 -----

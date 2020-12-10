@@ -423,6 +423,15 @@ points(
   iris1234[iris1234$Species == "versicolor",]$Sepal.Width, col = "red")
 ```
 
+#### All Dimensions: Scatterplot Matrix
+
+> NOTE: This visualization gets crowded very quickly with increasing dimensions
+
+```{r chunk_id_scatterplot3}
+pairs(~ iris1234$Sepal.Length + iris1234$Sepal.Width + iris1234$Petal.Length + iris1234$Petal.Width,
+      col = as.factor(iris1234$Species))
+```
+
 [**Back to Top**](#table-of-contents)
 
 ---
@@ -570,6 +579,6 @@ points(
 
 ---
 
-> NOTE: Must manually add footer in `README.md` for correct rendering in GitHub: `<p align="center">Copyright &copy; 2019-&infin; <a href="http://www.athitkao.com/tos.html" target="_blank">Athit Kao</a>, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>`
+> NOTE: Must manually add footer in `README.md` for correct rendering in GitHub: `<p align="center">Copyright &copy; 2020-&infin; <a href="https://www.athitkao.com" target="_blank">Athit Kao</a>, <a href="https://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>`
 
 ---
