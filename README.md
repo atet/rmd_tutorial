@@ -734,7 +734,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.38
+    ##    3.86
 
 ..see how much faster leveraging native vectorization capabilities of R:
 
@@ -745,7 +745,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    0.13
+    ##    0.18
 
 ``` r
 all.equal(result1, result2)
@@ -768,7 +768,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    10.2
+    ##   10.16
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -785,7 +785,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.67
+    ##    4.56
 
 > NOTE: For an introduction to the functions used below, `lapply` and
 > `parLapplyLB`, please see: [Functions: Theory, Practice, and
@@ -851,11 +851,8 @@ points(
 
 -----
 
-<center>
-
-Copyright © 2020-∞ [Athit Kao](http://www.athitkao.com), [Terms and
-Conditions](http://www.athitkao.com/tos.html)
-
-</center>
+<c align="center"> Copyright © 2020-∞ [Athit
+Kao](http://www.athitkao.com), [Terms and
+Conditions](http://www.athitkao.com/tos.html) </c>
 
 -----
