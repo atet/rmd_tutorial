@@ -851,8 +851,8 @@ points(
 
 -----
 
-<c align="center"> Copyright © 2020-∞ [Athit
+<p align="center"> Copyright © 2020-∞ [Athit
 Kao](http://www.athitkao.com), [Terms and
-Conditions](http://www.athitkao.com/tos.html) </c>
+Conditions](http://www.athitkao.com/tos.html) </p>
 
 -----
