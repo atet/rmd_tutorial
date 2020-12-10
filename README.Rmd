@@ -381,6 +381,14 @@ hist(iris1234$Sepal.Length)
 plot(density(iris1234$Sepal.Length))
 ```
 
+#### One-Dimensional Data: Comparative Barplots
+
+> NOTE: This is counts of records/observations in each group
+
+```{r chunk_id_barplot}
+barplot(table(iris1234$Species))
+```
+
 #### One-Dimensional Data: Comparative Boxplots
 
 > NOTE: The tilde '`~`' below [(a.k.a formula interface)](https://www.datacamp.com/community/tutorials/r-formula-tutorial#using) is basically saying "..where Sepal.Length _depends_ on Species"
@@ -562,6 +570,6 @@ points(
 
 ---
 
-> NOTE: Must manually add footer in README.md for correct rendering in GitHub: `<p align="center">Copyright &copy; 2019-&infin; <a href="http://www.athitkao.com/tos.html" target="_blank">Athit Kao</a>, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>`
+> NOTE: Must manually add footer in `README.md` for correct rendering in GitHub: `<p align="center">Copyright &copy; 2019-&infin; <a href="http://www.athitkao.com/tos.html" target="_blank">Athit Kao</a>, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>`
 
 ---

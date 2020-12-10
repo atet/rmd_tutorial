@@ -617,6 +617,16 @@ plot(density(iris1234$Sepal.Length))
 
 ![](.img/README_chunk_id_density-1.png)<!-- -->
 
+#### One-Dimensional Data: Comparative Barplots
+
+> NOTE: This is counts of records/observations in each group
+
+``` r
+barplot(table(iris1234$Species))
+```
+
+![](.img/README_chunk_id_barplot-1.png)<!-- -->
+
 #### One-Dimensional Data: Comparative Boxplots
 
 > NOTE: The tilde ‘`~`’ below [(a.k.a formula
@@ -734,7 +744,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.86
+    ##    3.87
 
 ..see how much faster leveraging native vectorization capabilities of R:
 
@@ -745,7 +755,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    0.18
+    ##    0.14
 
 ``` r
 all.equal(result1, result2)
@@ -768,7 +778,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##   10.16
+    ##   10.15
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -785,7 +795,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.56
+    ##    4.58
 
 > NOTE: For an introduction to the functions used below, `lapply` and
 > `parLapplyLB`, please see: [Functions: Theory, Practice, and
@@ -851,6 +861,6 @@ points(
 
 -----
 
-<p align="center">Copyright &copy; 2020-&infin; <a href="http://www.athitkao.com/tos.html" target="_blank">Athit Kao</a>, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>
+<p align="center">Copyright &copy; 2019-&infin; <a href="http://www.athitkao.com/tos.html" target="_blank">Athit Kao</a>, <a href="http://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>
 
 -----
