@@ -1,5 +1,4 @@
 ---
-title: "R Markdown for GitHub with Intermediate R Tutorial"
 output: rmarkdown::github_document
 ---
 
@@ -10,11 +9,17 @@ knitr::opts_chunk$set(
 )
 ```
 
+<a name="r-markdown-for-github-with-intermediate-r-tutorial"></a>
+
+# R Markdown for GitHub with Intermediate R Tutorial
+
+[![.img/logo_rmarkdown.png](.img/logo_rmarkdown.png)](#nolink)
+
 # [atet](https://github.com/atet) / [**_rmd_tutorial_**](https://github.com/atet/rmd_tutorial#r-markdown-for-github-with-intermediate-r-tutorial)
 
 ---
 
-<a name=""></a>
+<a name="table-of-contents"></a>
 
 ## Table of Contents
 
@@ -44,7 +49,7 @@ This is an R Markdown document. R Markdown uses the Markdown language, but allow
 
 ### Converting from `README.Rmd` → `README.md`
 
-You can **_clone this repository as a template_** for your own feature-rich `README.md` files on GitHub (and other platforms like Bitbucket).
+You can [**_clone this repository as a template_**](https://github.com/atet/rmd) for your own feature-rich `README.md` files on GitHub (and other platforms like Bitbucket).
 
 If you open the `README.Rmd` document for editing in RStudio and click the **Knit** button, a normal Markdown document (`README.md`) will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 

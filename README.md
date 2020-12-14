@@ -1,11 +1,15 @@
-R Markdown for GitHub with Intermediate R Tutorial
-================
+
+<a name="r-markdown-for-github-with-intermediate-r-tutorial"></a>
+
+# R Markdown for GitHub with Intermediate R Tutorial
+
+[![.img/logo\_rmarkdown.png](.img/logo_rmarkdown.png)](#nolink)
 
 # [atet](https://github.com/atet) / [***rmd\_tutorial***](https://github.com/atet/rmd_tutorial#r-markdown-for-github-with-intermediate-r-tutorial)
 
 -----
 
-<a name=""></a>
+<a name="table-of-contents"></a>
 
 ## Table of Contents
 
@@ -39,9 +43,9 @@ the RStudio IDE.
 
 ### Converting from `README.Rmd` → `README.md`
 
-You can ***clone this repository as a template*** for your own
-feature-rich `README.md` files on GitHub (and other platforms like
-Bitbucket).
+You can [***clone this repository as a
+template***](https://github.com/atet/rmd) for your own feature-rich
+`README.md` files on GitHub (and other platforms like Bitbucket).
 
 If you open the `README.Rmd` document for editing in RStudio and click
 the **Knit** button, a normal Markdown document (`README.md`) will be
@@ -756,7 +760,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.06
+    ##    3.73
 
 ..see how much faster leveraging native vectorization capabilities of R:
 
@@ -790,7 +794,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##   10.12
+    ##   10.22
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -807,7 +811,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.57
+    ##    4.39
 
 > NOTE: For an introduction to the functions used below, `lapply` and
 > `parLapplyLB`, please see: [Functions: Theory, Practice, and
