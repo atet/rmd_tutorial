@@ -11,11 +11,11 @@ knitr::opts_chunk$set(
 
 <a name="r-markdown-for-github-with-intermediate-r-tutorial"></a>
 
-# R Markdown for GitHub with Intermediate R Tutorial
+# [atet](https://github.com/atet) / [**_rmd_tutorial_**](https://github.com/atet/rmd_tutorial#r-markdown-for-github-with-intermediate-r-tutorial)
 
 [![.img/logo_rmarkdown.png](.img/logo_rmarkdown.png)](#nolink)
 
-# [atet](https://github.com/atet) / [**_rmd_tutorial_**](https://github.com/atet/rmd_tutorial#r-markdown-for-github-with-intermediate-r-tutorial)
+# R Markdown for GitHub with Intermediate R Tutorial
 
 ---
 
@@ -28,6 +28,7 @@ knitr::opts_chunk$set(
    * [Prerequisites](#prerequisites)
    * [Background](#background)
    * [Loading Data](#loading-data)
+   * [Inspect](#inspect)
    * [Metadata](#metadata)
    * [Subsetting](#subsetting)
    * [Manipulation](#manipulation)
@@ -155,6 +156,32 @@ iris2 = read.csv("./dat/iris2.csv")
 ```{r chunk_id_load2}
 iris3 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/iris3.csv"))
 iris4 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/iris4.csv"))
+```
+
+[**Back to Top**](#table-of-contents)
+
+---
+
+<a name="inspect"></a>
+
+### Inspect
+
+You can take a quick peek at the data by clicking on the object's name in the upper-right "Environment" pane or running the command below:
+
+```r
+View(iris1)
+```
+
+You can also take a quick peek at the first few lines of the data with:
+
+```{r chunk_id_inspect1}
+head(iris1, n = 3)
+```
+
+..or the last few lines of the data with:
+
+```{r chunk_id_inspect2}
+tail(iris1, n = 3)
 ```
 
 [**Back to Top**](#table-of-contents)

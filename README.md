@@ -1,11 +1,11 @@
 
 <a name="r-markdown-for-github-with-intermediate-r-tutorial"></a>
 
-# R Markdown for GitHub with Intermediate R Tutorial
+# [atet](https://github.com/atet) / [***rmd\_tutorial***](https://github.com/atet/rmd_tutorial#r-markdown-for-github-with-intermediate-r-tutorial)
 
 [![.img/logo\_rmarkdown.png](.img/logo_rmarkdown.png)](#nolink)
 
-# [atet](https://github.com/atet) / [***rmd\_tutorial***](https://github.com/atet/rmd_tutorial#r-markdown-for-github-with-intermediate-r-tutorial)
+# R Markdown for GitHub with Intermediate R Tutorial
 
 -----
 
@@ -18,6 +18,7 @@
       - [Prerequisites](#prerequisites)
       - [Background](#background)
       - [Loading Data](#loading-data)
+      - [Inspect](#inspect)
       - [Metadata](#metadata)
       - [Subsetting](#subsetting)
       - [Manipulation](#manipulation)
@@ -184,6 +185,43 @@ iris2 = read.csv("./dat/iris2.csv")
 iris3 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/iris3.csv"))
 iris4 = read.csv(url("https://raw.githubusercontent.com/atet/rmd/tutorial/dat/iris4.csv"))
 ```
+
+[**Back to Top**](#table-of-contents)
+
+-----
+
+<a name="inspect"></a>
+
+### Inspect
+
+You can take a quick peek at the data by clicking on the object’s name
+in the upper-right “Environment” pane or running the command below:
+
+``` r
+View(iris1)
+```
+
+You can also take a quick peek at the first few lines of the data with:
+
+``` r
+head(iris1, n = 3)
+```
+
+    ##   id Sepal.Length Sepal.Width Petal.Length Petal.Width
+    ## 1  1          5.1         3.5          1.4         0.2
+    ## 2  2          4.9         3.0          1.4         0.2
+    ## 3  3          4.7         3.2          1.3         0.2
+
+..or the last few lines of the data with:
+
+``` r
+tail(iris1, n = 3)
+```
+
+    ##    id Sepal.Length Sepal.Width Petal.Length Petal.Width
+    ## 73 73          6.3         2.5          4.9         1.5
+    ## 74 74          6.1         2.8          4.7         1.2
+    ## 75 75          6.4         2.9          4.3         1.3
 
 [**Back to Top**](#table-of-contents)
 
@@ -760,7 +798,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.73
+    ##    3.77
 
 ..see how much faster leveraging native vectorization capabilities of R:
 
@@ -794,7 +832,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##   10.22
+    ##   10.19
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -811,7 +849,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    4.39
+    ##    4.34
 
 > NOTE: For an introduction to the functions used below, `lapply` and
 > `parLapplyLB`, please see: [Functions: Theory, Practice, and
@@ -877,6 +915,10 @@ points(
 
 -----
 
-<p align="center">Copyright &copy; 2020-&infin; <a href="https://www.athitkao.com" target="_blank">Athit Kao</a>, <a href="https://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>
+> NOTE: Must manually add footer in `README.md` for correct rendering in
+> GitHub: `<p align="center">Copyright &copy; 2020-&infin; <a
+> href="https://www.athitkao.com" target="_blank">Athit Kao</a>, <a
+> href="https://www.athitkao.com/tos.html" target="_blank">Terms and
+> Conditions</a></p>`
 
 -----
