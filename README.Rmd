@@ -326,6 +326,21 @@ iris1234[iris1234$id == "1", ]$Species = "SETOSA"
 head(iris1234, n = 1)
 ```
 
+You can reorder by values in a row in descending:
+
+```{r chunk_id_manipulation10}
+iris1234 = iris1234[order(-iris1234$id), ]
+head(iris1234, n = 3)
+```
+
+
+..or (back to) ascending order:
+
+```{r chunk_id_manipulation11}
+iris1234 = iris1234[order(iris1234$id), ]
+head(iris1234, n = 3)
+```
+
 [**Back to Top**](#table-of-contents)
 
 ---

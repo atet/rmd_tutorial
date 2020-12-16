@@ -482,6 +482,30 @@ head(iris1234, n = 1)
     ##   id Sepal.Length Sepal.Width Petal.Length Petal.Width Species
     ## 1  1          5.1         3.5          1.4         0.2  SETOSA
 
+You can reorder by values in a row in descending:
+
+``` r
+iris1234 = iris1234[order(-iris1234$id), ]
+head(iris1234, n = 3)
+```
+
+    ##      id Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+    ## 150 150          5.9         3.0          5.1         1.8 virginica
+    ## 149 149          6.2         3.4          5.4         2.3 virginica
+    ## 148 148          6.5         3.0          5.2         2.0 virginica
+
+..or (back to) ascending order:
+
+``` r
+iris1234 = iris1234[order(iris1234$id), ]
+head(iris1234, n = 3)
+```
+
+    ##   id Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+    ## 1  1          5.1         3.5          1.4         0.2  SETOSA
+    ## 2  2          4.9         3.0          1.4         0.2  setosa
+    ## 3  3          4.7         3.2          1.3         0.2  setosa
+
 [**Back to Top**](#table-of-contents)
 
 -----
@@ -798,7 +822,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##    3.77
+    ##    3.73
 
 ..see how much faster leveraging native vectorization capabilities of R:
 
@@ -832,7 +856,7 @@ system.time({
 ```
 
     ## elapsed 
-    ##   10.19
+    ##    10.2
 
 > NOTE: Code below will work in Windows, MacOS, and Linux
 
@@ -915,10 +939,6 @@ points(
 
 -----
 
-> NOTE: Must manually add footer in `README.md` for correct rendering in
-> GitHub: `<p align="center">Copyright &copy; 2020-&infin; <a
-> href="https://www.athitkao.com" target="_blank">Athit Kao</a>, <a
-> href="https://www.athitkao.com/tos.html" target="_blank">Terms and
-> Conditions</a></p>`
+<p align="center">Copyright &copy; 2020-&infin; <a href="https://www.athitkao.com" target="_blank">Athit Kao</a>, <a href="https://www.athitkao.com/tos.html" target="_blank">Terms and Conditions</a></p>
 
 -----
